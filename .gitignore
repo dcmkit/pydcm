@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.so
+*.whl
+/site/
+/build/
+.venv/
+.DS_Store
