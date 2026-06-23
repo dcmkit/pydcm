@@ -1,0 +1,82 @@
+site_name: pydcm
+site_description: The complete DICOM toolkit for Python — every transfer syntax built in, no plugins, NumPy/PyTorch native, one wheel.
+site_url: https://dcmkit.github.io/pydcm/
+repo_url: https://github.com/dcmkit/pydcm
+repo_name: dcmkit/pydcm
+docs_dir: docs
+
+theme:
+  name: material
+  features:
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+
+nav:
+  - Home: index.md
+  - Install: install.md
+  - Quickstart: quickstart.md
+  - Agent skill: skill.md
+  - Behaviour notes: divergences.md
+  - How-to:
+      - Overview: howto/index.md
+      - DICOM → NIfTI, BIDS &amp; DWI: howto/nifti-bids-dwi.md
+      - Preprocessing: howto/preprocessing.md
+      - De-identification: howto/deidentification.md
+      - Radiomics: howto/radiomics.md
+      - Whole-slide imaging: howto/wsi.md
+      - Segmentations (SEG): howto/segmentation.md
+      - Surface meshes &amp; tractography: howto/surface-tractography.md
+      - Parametric maps: howto/parametric-map.md
+      - Structured reports (TID 1500): howto/structured-reports.md
+      - RT dose &amp; DVH: howto/rt-dose-dvh.md
+      - Spatial registration (66.1): howto/spatial-registration.md
+      - Tumour response (RECIST): howto/recist-response.md
+      - Perfusion (DCE-MRI): howto/perfusion-dce.md
+      - Perfusion (DSC-MRI): howto/perfusion-dsc.md
+      - Diffusion tensor (DTI): howto/dti.md
+      - DIMSE networking: howto/dimse.md
+      - DICOMweb: howto/dicomweb.md
+      - Waveforms (ECG / EEG): howto/waveforms.md
+      - Ophthalmic visual field: howto/ophthalmic-visual-field.md
+      - FHIR &amp; HL7: howto/fhir-hl7.md
+      - Agent / MCP server: howto/mcp-agent.md
+  - API reference: api.md
+  - Transforms — precision &amp; references: transforms_references.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_root_heading: true
+            show_source: false
+            members_order: source
+            docstring_style: google
+            separate_signature: true
+            show_signature_annotations: true
+            filters: ["!^_"]
