@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.so
+*.whl
+/site/
+/build/
+.venv/
+.DS_Store
+
+# never publish native source (builds from the private tree)
+*.cpp
+*.cc
+*.cxx
+*.h
+*.hpp
+*.hxx

@@ -1,0 +1,24 @@
+pydcm
+Copyright (c) 2026 Fuli Wu
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+pydcm's high-performance DICOM engine ships as a compiled binary inside the
+`pydcm._core` extension; its source is maintained separately and is not included
+in this distribution. The Apache-2.0 grant covers the pydcm package as
+distributed.
+
+NOT A MEDICAL DEVICE. pydcm is not a medical device and is not intended or
+cleared for clinical, diagnostic, or therapeutic use. Decoded pixels and
+Hounsfield values are for research and engineering use only; you are solely
+responsible for validating any output for your intended use.
+
+THIRD-PARTY SOFTWARE. The extension statically links third-party open-source
+libraries (and links the host operating system's zlib/bzip2 dynamically); all
+are listed with their notices in THIRD-PARTY-LICENSES. FFmpeg is included under
+the GNU LGPL v2.1 (full text in LGPL-2.1.txt) with a §6 relink offer.
+
+TRADEMARKS. "FFmpeg" is a trademark of the FFmpeg project. "DICOM" is a
+registered trademark of the National Electrical Manufacturers Association
+(NEMA). These names are used only to describe interoperability; pydcm is not
+affiliated with, sponsored by, or endorsed by the FFmpeg project or NEMA.

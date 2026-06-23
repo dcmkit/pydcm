@@ -1,0 +1,63 @@
+# pydcm is distributed as pre-built wheels on PyPI — `pip install pydcm`.
+# This repository holds the Python layer, docs and issue tracker; the native
+# DICOM engine is not open source, so the package is NOT built from this repo
+# (no CMake project or C++ sources are included here). The build config below
+# is the real one used to produce the published wheels, kept for reference.
+
+[build-system]
+requires = ["scikit-build-core>=0.10", "nanobind>=2.0"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "pydcm"
+dynamic = ["version"]   # single source: __version__ in src/pydcm/__init__.py
+description = "The complete DICOM toolkit for Python — every transfer syntax built in (no plugins), NumPy/PyTorch native; DIMSE + DICOMweb, NIfTI/BIDS, RT dose/DVH, WSI, SEG/SR, radiomics in one wheel"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE", "THIRD-PARTY-LICENSES", "LGPL-2.1.txt"]
+authors = [{ name = "Fuli Wu" }]
+keywords = ["dicom", "pytorch", "numpy", "medical-imaging", "hounsfield",
+            "jpeg2000", "htj2k", "rle", "ct", "mri", "dataloader", "nifti", "bids",
+            "dimse", "dicomweb", "radiomics", "wsi", "rt-dose", "dvh"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+]
+dependencies = ["numpy>=1.23"]
+
+[project.optional-dependencies]
+torch = ["torch"]
+test = ["pytest", "pydicom>=2.4", "highdicom", "pynetdicom", "numpy"]
+
+[project.urls]
+# These go live once dcmkit/pydcm is pushed + GitHub Pages is enabled —
+# do that BEFORE `twine upload` so PyPI never shows a dead link.
+Homepage = "https://github.com/dcmkit/pydcm"
+Repository = "https://github.com/dcmkit/pydcm"
+Issues = "https://github.com/dcmkit/pydcm/issues"
+Documentation = "https://dcmkit.github.io/pydcm/"
+
+[tool.scikit-build]
+minimum-version = "build-system.requires"
+metadata.version.provider = "scikit_build_core.metadata.regex"
+metadata.version.input = "src/pydcm/__init__.py"
+wheel.packages = ["src/pydcm"]
+# Stable-ABI (abi3) wheel: nanobind builds against the CPython 3.12 limited API
+# (STABLE_ABI on every module), so ONE wheel per platform covers 3.12+.
+wheel.py-api = "cp312"
+build-dir = "build/{wheel_tag}"
+cmake.build-type = "Release"
+# The wheel is a binary dist — ship the compiled extension + .py, not the C++ source.
+wheel.exclude = ["**/*.cpp"]
+sdist.exclude = [".venv", "build", "build_dev", "**/__pycache__", "**/*.so", "**/*.cpp", "**/.DS_Store"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,213 @@
+THIRD-PARTY LICENSES — pydcm
+============================
+
+pydcm is licensed under Apache-2.0 (see LICENSE / NOTICE). Its compiled
+extension `pydcm._core` embeds a first-party DICOM engine (shipped as compiled
+machine code; source maintained separately) and links the THIRD-PARTY components
+below. The first-party engine is NOT listed here.
+
+This file lists the THIRD-PARTY components used by `pydcm._core`. Most are
+STATICALLY linked into the extension; a few (zlib, bzip2) are linked
+DYNAMICALLY against the host operating system's shared libraries and are NOT
+redistributed in the wheel. Notices are reproduced as required for binary
+redistribution; linkage is noted per component. Linkage and versions are those
+of the published macOS arm64 wheel and may differ on other platforms.
+
+  Component        Version                 SPDX                  Linkage   Role
+  ---------        -------                 ----                  -------   ----
+  nanobind         2.12.0                  BSD-3-Clause          static    C++/Python bindings
+  libjpeg-turbo    3.1.2                   IJG AND BSD-3-Clause  static    JPEG codec
+  OpenJPEG         2.5.4                   BSD-2-Clause          static    JPEG 2000 codec
+  OpenJPH          0.26.3                  BSD-2-Clause          static    HTJ2K codec
+  CharLS           3.0.0                   BSD-3-Clause          static    JPEG-LS codec
+  libjxl           0.x                     BSD-3-Clause          static    JPEG XL codec
+  Highway (libhwy) 1.x                     Apache-2.0            static    SIMD (libjxl dependency)
+  libpng           1.6.59                  libpng-2.0            static    PNG codec
+  libtiff          4.7.1                   libtiff (BSD-like)    static    TIFF codec
+  libwebp+sharpyuv 1.6.0                   BSD-3-Clause          static    WebP codec
+  libdeflate       1.x                     MIT                   static    DEFLATE
+  Brotli           1.x                     MIT                   static    Brotli (libjxl dependency)
+  FFmpeg (libav*)  N-124675-g468a743af1    LGPL-2.1-or-later     static    embedded-video DICOM decode
+  iconv (embedded) Citrus/NetBSD           BSD-3-Clause          static    DICOM charset (SpecificCharacterSet) → UTF-8
+  zlib             system (libz.1.dylib)   Zlib                  dynamic   deflate (OS-provided; not redistributed)
+  bzip2            system (libbz2.1.0)     bzip2-1.0.6           dynamic   bzip2 (OS-provided; not redistributed)
+
+Trademarks of FFmpeg and NEMA ("DICOM") are noted in NOTICE.
+
+═══════════════════════════════════════════════════════════════════════════════
+BSD-3-Clause — nanobind (Copyright (c) 2022 Wenzel Jakob); libwebp + sharpyuv
+(Copyright (c) 2010 Google Inc.); the TurboJPEG API of libjpeg-turbo (Copyright
+(c) 2009-2024 D. R. Commander and contributors); CharLS (Copyright (c) Team
+CharLS); libjxl / JPEG XL (Copyright (c) the JPEG XL Project Authors); the
+embedded iconv that performs DICOM SpecificCharacterSet → UTF-8 transcoding
+(derived from the Citrus Project / NetBSD iconv — Copyright (c) 1999-2003 Citrus
+Project; Copyright (c) The NetBSD Foundation, Inc.; with FreeBSD Foundation
+contributions; vendored and self-contained, with no external iconv/libc or DCMTK
+dependency).
+═══════════════════════════════════════════════════════════════════════════════
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software
+   without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT, ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+═══════════════════════════════════════════════════════════════════════════════
+Apache-2.0 — Highway / libhwy (Copyright (c) Google LLC), the SIMD library used
+by libjxl. Highway is dual-licensed under the Apache License 2.0 or the BSD
+3-Clause License; the Apache-2.0 terms apply here. The full Apache License 2.0
+text is in the accompanying LICENSE file (which also governs pydcm itself).
+═══════════════════════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════════════════════
+BSD-2-Clause — OpenJPEG (Copyright (c) 2002-2014, Université catholique de
+Louvain (UCL), Belgium; et al.); OpenJPH (Copyright (c) 2019, Aous Naman,
+Kakadu R&D Pty Ltd, and contributors).
+═══════════════════════════════════════════════════════════════════════════════
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DAMAGES HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+═══════════════════════════════════════════════════════════════════════════════
+MIT License — libdeflate (Copyright (c) 2016 Eric Biggers); Brotli
+(Copyright (c) 2009, 2010, 2013-2016 by the Brotli Authors / Google Inc.).
+═══════════════════════════════════════════════════════════════════════════════
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following condition: the above copyright notice and this
+permission notice shall be included in all copies or substantial portions of the
+Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+═══════════════════════════════════════════════════════════════════════════════
+IJG License — the libjpeg API of libjpeg-turbo
+(Copyright (C) 1991-2020, Thomas G. Lane, Guido Vollbeding).
+═══════════════════════════════════════════════════════════════════════════════
+This software is based in part on the work of the Independent JPEG Group.
+Permission is granted to use, copy, modify, and distribute this software (or
+works based on it) for any purpose, without fee, subject to these conditions:
+(1) the above copyright notice and this permission notice are retained; (2) if
+the source is distributed, the accompanying documentation must state that the
+software "is based in part on the work of the Independent JPEG Group"; (3) the
+authors accept no liability for any use of the software and give NO WARRANTY,
+express or implied. The full IJG terms are in README.ijg in the libjpeg-turbo
+source. (The libjpeg-turbo SIMD sources are under the Zlib License, subsumed by
+the IJG License in the context of the library.)
+
+═══════════════════════════════════════════════════════════════════════════════
+libpng License (PNG Reference Library License v2) — libpng 1.6.59
+Copyright (c) 1995-2024 The PNG Reference Library Authors; (c) 2018-2024 Cosmin
+Truta; (c) 2000-2017 Glenn Randers-Pehrson; (c) 1996-1997 Andreas Dilger;
+(c) 1995-1996 Guy Eric Schalnat, Group 42, Inc.
+═══════════════════════════════════════════════════════════════════════════════
+The software is supplied "as is", without warranty of any kind, express or
+implied, including, without limitation, the warranties of merchantability,
+fitness for a particular purpose, title, and non-infringement. The authors and
+copyright holders shall not be liable for any claim, damages, or other
+liability arising from the use of the software. Permission is granted to use,
+copy, modify, and distribute this software for any purpose, subject to the
+condition that copyright notices are retained and not misrepresented as to the
+origin of the source. Full text: http://www.libpng.org/pub/png/src/libpng-LICENSE.txt
+
+═══════════════════════════════════════════════════════════════════════════════
+libtiff License — libtiff 4.7.1
+Copyright (c) 1988-1997 Sam Leffler; Copyright (c) 1991-1997 Silicon Graphics, Inc.
+═══════════════════════════════════════════════════════════════════════════════
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+(i) the above copyright notices and this permission notice appear in all copies
+of the software and related documentation, and (ii) the names of Sam Leffler and
+Silicon Graphics may not be used in any advertising or publicity relating to the
+software without the specific, prior written permission of Sam Leffler and
+Silicon Graphics. THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY
+KIND, EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY WARRANTY
+OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+═══════════════════════════════════════════════════════════════════════════════
+Zlib License — zlib (dynamically linked from the OS) and the libjpeg-turbo SIMD
+sources.  Copyright (c) 1995-2024 Jean-loup Gailly and Mark Adler.
+═══════════════════════════════════════════════════════════════════════════════
+This software is provided 'as-is', without any express or implied warranty. In
+no event will the authors be held liable for any damages arising from the use
+of this software. Permission is granted to anyone to use this software for any
+purpose, including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions: (1) the origin of this software
+must not be misrepresented; (2) altered source versions must be plainly marked
+as such, and must not be misrepresented as being the original software; (3) this
+notice may not be removed or altered from any source distribution.
+
+═══════════════════════════════════════════════════════════════════════════════
+bzip2 License — bzip2 (dynamically linked from the OS).
+Copyright (c) 1996-2019 Julian Seward
+═══════════════════════════════════════════════════════════════════════════════
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that: (1) source redistributions retain the
+copyright notice, this list of conditions and the disclaimer; (2) altered
+versions are plainly marked and not misrepresented as the original; (3) binary
+redistributions reproduce the copyright notice, conditions and disclaimer in the
+documentation; (4) the author's name may not be used to endorse derived products
+without permission. THIS SOFTWARE IS PROVIDED "AS IS" WITH NO WARRANTY.
+
+═══════════════════════════════════════════════════════════════════════════════
+FFmpeg — LGPL-2.1-or-later (statically linked into pydcm._core)
+Copyright (c) the FFmpeg developers.  FFmpeg git snapshot N-124675-g468a743af1
+(git describe n8.2-dev-1402-g468a743af1, commit
+468a743af1653a08f47081aa0a18dc6dacff543a; libavcodec 62.34.102, libavformat
+62.18.100, libavutil 60.31.100, libswscale 9.7.100), built WITHOUT --enable-gpl
+and without x264 / x265 / libpostproc, so it contains only LGPL (not GPL) code
+(config.h: CONFIG_GPL 0 / CONFIG_NONFREE 0; libavutil self-reports "LGPL version
+2.1 or later"). Decoding is performed by FFmpeg's native LGPL software decoders
+(H.264 / HEVC / MPEG-2 / MPEG-4 / MJPEG) compiled into the static libraries;
+Apple VideoToolbox is enabled only as an optional hardware-accelerated path
+(and for H.264/HEVC encode), not as the codec implementation.
+═══════════════════════════════════════════════════════════════════════════════
+FFmpeg is licensed under the GNU Lesser General Public License, version 2.1 or
+later; the complete license text is in the accompanying LGPL-2.1.txt.
+
+LGPL-2.1 §6 WRITTEN OFFER. FFmpeg is statically linked into pydcm._core. So that
+you may modify FFmpeg and relink it with pydcm, the licensor offers, valid for
+three (3) years from your receipt of this distribution, to provide upon written
+request: (a) the complete corresponding source code of FFmpeg for the exact
+version above — git commit 468a743af1653a08f47081aa0a18dc6dacff543a, which the
+licensor has archived and will provide (ffmpeg.org hosts tagged releases only
+and may not retain this development snapshot); and (b) the machine-readable
+object code of the portions of pydcm that are linked with FFmpeg, sufficient to
+relink them against a modified FFmpeg. Direct requests via
+https://github.com/dcmkit/pydcm/issues. The
+object code provided under (b) does NOT include, and grants no rights in, the
+source code of pydcm or of its first-party DICOM engine. (The licensor retains
+the relinkable object code and corresponding FFmpeg source for each published
+wheel for the full offer period — see python/PACKAGING.md.)
