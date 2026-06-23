@@ -1,0 +1,5 @@
+# pydcm docs build — `pip install pydcm -r docs/requirements.txt`
+# (pydcm itself must be importable for the mkdocstrings API reference)
+mkdocs-material>=9.5
+mkdocstrings[python]>=0.25
+black>=24.0          # nicer autodoc signature formatting (separate_signature)
